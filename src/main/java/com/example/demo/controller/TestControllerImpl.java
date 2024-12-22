@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.Test;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,6 +19,13 @@ public class TestControllerImpl implements TestController {
     public Test testBean() {
         Test test = new Test();
         test.setMessage("test");
+        return test;
+    }
+
+    @GetMapping("test-bean/{id}")
+    public Test testParameters(@PathVariable Long id) { // id should be same
+        Test test = new Test();
+        test.setMessage(String.format("Test id:%d", id));
         return test;
     }
 }
